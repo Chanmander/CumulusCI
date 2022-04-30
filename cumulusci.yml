@@ -150,3 +150,6 @@ orgs:
 
         pytest:
             config_file: orgs/dev.json
+
+        person_accounts:
+            config_file: orgs/person_accounts.json

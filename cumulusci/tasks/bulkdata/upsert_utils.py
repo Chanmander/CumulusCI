@@ -119,7 +119,7 @@ def needs_etl_upsert(mapping: MappingStep, sf: Salesforce):
     # probably impossible to trigger this assertion, but just in case.
     assert len(keys) == 1, "UPSERT action should only have simple keys"
 
-    describe_data = mapping.describe_data(sf)
+    describe_data = mapping.describe_fields(sf)
 
     key = keys[0]
     is_sf_builtin_key = (

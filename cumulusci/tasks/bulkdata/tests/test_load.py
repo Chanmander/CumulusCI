@@ -2490,3 +2490,42 @@ class TestLoadDataIntegrationTests:
             )
             task()
             assert counts == {"Account": [10000], "Contact": [1]}
+
+
+class TestPersonAccounts:
+    # this can be replaced with a VCR test when our VCR can support
+    # alternate org-shapes for describe() calls
+    @pytest.mark.needs_org()
+    @pytest.mark.org_shape("person_accounts", None)
+    def test_person_accounts(self, create_task, current_org_shape):
+        base_path = os.path.dirname(__file__)
+        sql_path = os.path.join(base_path, "person_accounts.sql")
+        mapping_path = os.path.join(base_path, "person_accounts.yml")
+
+        task = create_task(
+            LoadData,
+            {
+                "sql_path": sql_path,
+                "mapping": mapping_path,
+                "set_recently_viewed": False,
+            },
+        )
+        task()
+
+    @pytest.mark.needs_org()
+    @pytest.mark.slow()
+    @pytest.mark.org_shape("person_accounts", None)
+    def test_org_shape_2(self, create_task, current_org_shape):
+        base_path = os.path.dirname(__file__)
+        sql_path = os.path.join(base_path, "person_accounts.sql")
+        mapping_path = os.path.join(base_path, "person_accounts.yml")
+
+        task = create_task(
+            LoadData,
+            {
+                "sql_path": sql_path,
+                "mapping": mapping_path,
+                "set_recently_viewed": False,
+            },
+        )
+        task()
