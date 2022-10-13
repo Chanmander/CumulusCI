@@ -54,7 +54,7 @@ dx_limits:
     class_path: cumulusci.tasks.sfdx.SFDXBaseTask
     group: dx
     options:
-        command: sfdx force:limits:api:display
+        command: force:limits:api:display
 ```
 
 In this case, we actually utilize `SFDXBaseTask`, if you would like to
